@@ -36,6 +36,7 @@ export default function QuizPage() {
     <>
       {quizData[quizIndex] &&
         <Display>
+          {/* Q1が固定になっているので修正する */}
           {`Q1. ${quizData[quizIndex].question}`}
         </Display>
       }
