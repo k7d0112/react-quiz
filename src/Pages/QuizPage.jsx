@@ -13,20 +13,20 @@ export default function QuizPage() {
 
   const handleClick = (clickedIndex) => {
     if (clickedIndex === quizData[quizIndex].answerIndex) {
-      setAnswerLogs((prev) => [...prev, true]);
+      setAnswerLogs(prev => [...prev, true]);
     } else {
-      setAnswerLogs((prev) => [...prev, false]);
+      setAnswerLogs(prev => [...prev, false]);
     }
-    setQuizIndex((prev) => prev + 1);
+    setQuizIndex(prev => prev + 1);
   }
 
   useEffect(() => {
     if (answerLogs.length === MAX_QUIZ_LEN) {
-      const correctNum = answerLogs.filter((answer) => answer === true);
+      const correctNum = answerLogs.filter(answer => answer === true);
       navigation(ROUTES.RESULT, {
         state: {
           maxQuizLen: MAX_QUIZ_LEN,
-          correctNum: correctNum,
+          correctNumLen: correctNum.length,
         }
       });
     }
@@ -36,10 +36,10 @@ export default function QuizPage() {
     <>
       {quizData[quizIndex] &&
         <Display>
-          {/* Q1が固定になっているので修正する */}
-          {`Q1. ${quizData[quizIndex].question}`}
+          {`Q${quizIndex + 1}. ${quizData[quizIndex].question}`}
         </Display>
       }
+      <br/>
       {quizData[quizIndex] && quizData[quizIndex].options.map((option, index) => (
         <Button
           key={index}
